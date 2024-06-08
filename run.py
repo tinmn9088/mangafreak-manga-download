@@ -1,14 +1,8 @@
-from cli_utils import parse_args
+from cli import ArgumentService
 
+settings = ArgumentService.get_settings()
 
-args = parse_args()
-
-print(
-    f'Running with args:',
-    f' * manga title: "{args.title}"',
-    f' * chapters per file: {args.chapters_per_file}',
-    sep='\n'
-)
+print('Running with settings:', vars(settings))
 
 print('Not implemented')
 
