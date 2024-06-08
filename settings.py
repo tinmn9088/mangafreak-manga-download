@@ -3,5 +3,5 @@ from dataclasses import dataclass
 
 @dataclass
 class Settings:
-    title: str
+    chapter_list_html_path: str
     chapters_per_file: int

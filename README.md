@@ -8,13 +8,12 @@ Install required packages:
 
 `pip install argparse`
 
-Run:
+Download chapter list page HTML and run:
 
-`python run.py -t <manga_title>`
+`python run.py <chapter_list_html_path>`
 
-Command line arguments:
+Optional command line arguments:
 
-| Name               |Description                                                   |
-|:---                |:---                                                          |
-| `-t`               | Manga title.                                                 |
-| (_optional_) `-ch` | Maximum number of chapters in one PDF file (default **15**). |
+| Name  |Description                                                   |
+|:---   |:---                                                          |
+| `-ch` | Maximum number of chapters in one PDF file (default **15**). |

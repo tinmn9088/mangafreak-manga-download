@@ -16,12 +16,12 @@ class ArgumentService:
         )
 
         # command line arguments
-        parser.add_argument('-t', '--title', required=True)
+        parser.add_argument('path')
         parser.add_argument('-ch', '--chapters-per-file', type=int, default=15)
 
         namespace = parser.parse_args()
 
         return Settings(
-            namespace.title,
+            namespace.path,
             namespace.chapters_per_file
         )
