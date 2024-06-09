@@ -42,5 +42,17 @@ class MangafreakService:
         return (title, chapter_numbers)
 
     @staticmethod
-    def get_image_links(title: str, chapter_number: str) -> list[str]:
-        pass
+    def get_title_url_version(manga_title: str) -> str:
+        '''
+        Get rid of non-word characters, each whitespace sequence replace with an underscore.
+        '''
+
+        # get rid of non-word characters
+        only_word_characters = re.sub('[^\w]', ' ', manga_title)
+
+        only_word_characters = only_word_characters.strip()
+
+        # join all words with underscores
+        no_whitespaces = re.sub('\s+', '_', only_word_characters)
+
+        return f'{no_whitespaces.lower()}'
