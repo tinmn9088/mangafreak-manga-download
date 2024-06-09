@@ -1,5 +1,7 @@
+import os
 from cli import ArgumentService
 from mangafreak import MangafreakService
+
 
 settings = ArgumentService.get_settings()
 
@@ -21,5 +23,9 @@ for chapter_number in chapter_numbers:
     downloaded_file_paths.append(downloaded_file_path)
 
 print(f'Files downloaded: {len(downloaded_file_paths)}')
+
+downloads_path = os.path.commonpath(downloaded_file_paths)
+
+print(sorted(os.listdir(downloads_path)))
 
 # TODO: assemble images in PDF

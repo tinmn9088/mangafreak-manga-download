@@ -67,6 +67,25 @@ class MangafreakService:
     def get_chapter_download_link(manga_title_url_version: str, chapter_number: str) -> str:
         return f'https://images.mangafreak.net/downloads/{manga_title_url_version}_{chapter_number}'
 
+    @staticmethod
+    def add_leading_zeroes(chapter_name: str, length: int = 3) -> str:
+        '''
+        Examples, when length is 4:
+
+        '43' -> '0043'
+
+        '43e' -> '0043e'
+        '''
+
+        match = re.search('^\\d+(.*)', chapter_name)
+
+        if match is None:
+            return chapter_name
+
+        nondigit_part = match.group(1)
+
+        return chapter_name.rjust(length + len(nondigit_part), '0')
+
     @classmethod
     def download_chapter(cls, manga_title_url_version: str, chapter_number: str) -> str:
         '''
@@ -81,7 +100,7 @@ class MangafreakService:
         os.makedirs(base_path, exist_ok=True)
 
         # generate output file path
-        output_file_path = os.path.join(base_path, f'{chapter_number}.zip')
+        output_file_path = os.path.join(base_path, f'{cls.add_leading_zeroes(chapter_number)}.zip')
 
         # open file for writing and make HTTP-request
         with open(output_file_path, 'wb') as output_file, requests.get(link, stream=True) as response:

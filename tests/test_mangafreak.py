@@ -20,3 +20,31 @@ def test_get_title_url_version():
 
         # assert
         assert expected_url_version == actual
+
+
+def test_add_leading_zeroes_digit_only_name():
+
+    # arrange
+    chapter_name = '43'
+    length = 4
+    expected = '0043'
+
+    # act
+    actual = mangafreak.MangafreakService.add_leading_zeroes(chapter_name, length)
+
+    # assert
+    assert expected == actual
+
+
+def test_add_leading_zeroes_name_with_letters():
+
+    # arrange
+    chapter_name = '43e'
+    length = 4
+    expected = '0043e'
+
+    # act
+    actual = mangafreak.MangafreakService.add_leading_zeroes(chapter_name, length)
+
+    # assert
+    assert expected == actual
