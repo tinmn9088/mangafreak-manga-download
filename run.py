@@ -1,13 +1,25 @@
 from cli import ArgumentService
+from mangafreak import MangafreakService
 
 settings = ArgumentService.get_settings()
 
 print('Running with settings:', vars(settings))
 
-print('Not implemented')
+# parse HTML
+title, chapter_numbers = MangafreakService.parse_html(settings.chapter_list_html_path)
 
-# TODO: generate url of the manga page, retrieve HTML and parse the list of chapters
+# transform title to its url version
+title_url_version = MangafreakService.get_title_url_version(title)
 
-# TODO: generate urls of images and download them
+# download chapters (zip-archives)
+downloaded_file_paths = []
+
+for chapter_number in chapter_numbers:
+
+    downloaded_file_path = MangafreakService.download_chapter(title_url_version, chapter_number)
+
+    downloaded_file_paths.append(downloaded_file_path)
+
+print(f'Files downloaded: {len(downloaded_file_paths)}')
 
 # TODO: assemble images in PDF
