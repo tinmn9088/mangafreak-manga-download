@@ -6,7 +6,7 @@ Download manga from `mangafreak.me` as PDF files.
 
 Install required packages:
 
-`pip install argparse beautifulsoup4`
+`pip install argparse beautifulsoup4 requests`
 
 Download chapter list page HTML and run:
 
