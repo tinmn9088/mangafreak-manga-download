@@ -24,7 +24,7 @@ class FileService:
         archive_number = 0
         extraction_paths = []
 
-        for archive_name in sorted(filter(lambda p: p != cls.EXTRACTION_COMMON_DIRECTORY, os.listdir(downloads_path))):
+        for archive_name in sorted(filter(lambda p: p.endswith('.zip'), os.listdir(downloads_path))):
 
             # get archive full path
             archive_path = os.path.join(downloads_path, archive_name)
@@ -93,4 +93,4 @@ class FileService:
 
             print('Done')
 
-        return image_directory_paths
+        return sorted(list(image_directory_paths))
