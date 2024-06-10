@@ -54,12 +54,12 @@ class MangafreakService:
         '''
 
         # get rid of non-word characters
-        only_word_characters = re.sub('[^\w]', ' ', manga_title)
+        only_word_characters = re.sub('[^\\w]', ' ', manga_title)
 
         only_word_characters = only_word_characters.strip()
 
         # join all words with underscores
-        no_whitespaces = re.sub('\s+', '_', only_word_characters)
+        no_whitespaces = re.sub('\\s+', '_', only_word_characters)
 
         return f'{no_whitespaces.lower()}'
 
