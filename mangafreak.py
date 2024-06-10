@@ -113,6 +113,9 @@ class MangafreakService:
 
             print(f'Downloading from {link}:')
 
+            if response.status_code != requests.status_codes.codes['ok']:
+                raise ConnectionError(f'Server responded with status code {response.status_code}')
+
             # hide cursor
             print('\033[?25l', end='')
 
