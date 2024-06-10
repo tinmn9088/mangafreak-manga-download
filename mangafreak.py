@@ -68,7 +68,7 @@ class MangafreakService:
         return f'https://images.mangafreak.net/downloads/{manga_title_url_version}_{chapter_number}'
 
     @staticmethod
-    def add_leading_zeroes(chapter_name: str, length: int = 3) -> str:
+    def add_leading_zeroes(chapter_name: str, length: int = 4) -> str:
         '''
         Examples, when length is 4:
 

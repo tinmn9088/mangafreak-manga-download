@@ -35,7 +35,7 @@ class FileService:
             extraction_path = os.path.join(
                 extraction_common_path,
 
-                f'{(archive_number // settings.chapters_per_file + 1):03d}',  # group archives
+                f'{(archive_number // settings.chapters_per_file + 1):04d}',  # group archives
                 Path(archive_name).stem
             )
 
