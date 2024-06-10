@@ -34,8 +34,7 @@ class FileService:
             # prepare extraction directory for this specific archive
             extraction_path = os.path.join(
                 extraction_common_path,
-
-                f'{(archive_number // settings.chapters_per_file + 1):04d}',  # group archives
+                f'{(archive_number // settings.chapters_per_file + 1):04d}',  # group images by destinatiion files
                 Path(archive_name).stem
             )
 

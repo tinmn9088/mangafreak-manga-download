@@ -52,7 +52,6 @@ class ImageMagickService:
                 args.insert(1, '-monitor')
 
             if settings.verbose:
-
                 print(f'Converting images from {image_directory_path}:')
 
             else:
