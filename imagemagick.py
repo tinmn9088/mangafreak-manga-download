@@ -46,13 +46,13 @@ class ImageMagickService:
             pdf_path = os.path.join(base_path, pdf_name)
 
             # prepare command to run ImageMagick
-            args = ['convert', f'{image_directory_path}/*', pdf_path]
+            args = ['convert', '-monitor', f'{image_directory_path}/*', pdf_path]
 
             # need to flush, otherwise it is likely not to print before converting is finished
             print(f'Converting images from {image_directory_path} ... ', end='', flush=True)
 
             # run ImageMagick
-            subprocess.check_call(args)
+            subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
             pdf_number += 1
 
