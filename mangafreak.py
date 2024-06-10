@@ -102,6 +102,12 @@ class MangafreakService:
         # generate output file path
         output_file_path = os.path.join(base_path, f'{cls.add_leading_zeroes(chapter_number)}.zip')
 
+        # skip download if file already exists
+        if os.path.exists(output_file_path):
+            print(f'Chapter is already downloaded at {output_file_path}')
+
+            return output_file_path
+
         # open file for writing and make HTTP-request
         with open(output_file_path, 'wb') as output_file, requests.get(link, stream=True) as response:
 

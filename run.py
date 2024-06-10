@@ -24,7 +24,7 @@ for chapter_number in chapter_numbers:
 
     downloaded_file_paths.append(downloaded_file_path)
 
-print(f'Files downloaded: {len(downloaded_file_paths)}')
+print(f'Archives ready: {len(downloaded_file_paths)}')
 
 # extract downloaded archives
 downloads_path = os.path.commonpath(downloaded_file_paths)
