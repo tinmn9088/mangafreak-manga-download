@@ -8,3 +8,4 @@ class Settings:
     author: str | None = None
     title: str | None = None
     verbose: bool = False
+    chapter_to_start_from: str | None = None

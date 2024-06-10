@@ -21,6 +21,7 @@ class ArgumentService:
         parser.add_argument('-a', '--author', type=str, default='Unknown')
         parser.add_argument('-t', '--title', type=str, default=None)
         parser.add_argument('-v', '--verbose', action='store_true')
+        parser.add_argument('-st', '--chapter-to-start-from', type=str, default=None)
 
         namespace = parser.parse_args()
 
@@ -29,5 +30,6 @@ class ArgumentService:
             namespace.chapters_per_file,
             namespace.author,
             namespace.title,
-            namespace.verbose
+            namespace.verbose,
+            namespace.chapter_to_start_from
         )

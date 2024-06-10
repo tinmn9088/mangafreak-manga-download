@@ -10,7 +10,7 @@ settings = ArgumentService.get_settings()
 print('Running with settings:', vars(settings))
 
 # parse HTML
-title, chapter_numbers = MangafreakService.parse_html(settings.chapter_list_html_path)
+title, chapter_numbers = MangafreakService.parse_html(settings)
 
 # transform title to its url version
 title_url_version = MangafreakService.get_title_url_version(title)

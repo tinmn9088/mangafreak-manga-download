@@ -1,7 +1,8 @@
-from bs4 import BeautifulSoup
+import os
 import re
 import requests
-import os
+from bs4 import BeautifulSoup
+from settings import Settings
 
 
 class MangafreakService:
@@ -15,12 +16,12 @@ class MangafreakService:
     DOWNLOAD_CHUNK_SIZE_BYTES = 1024 * 1024
 
     @classmethod
-    def parse_html(cls, chapter_list_html_path: str) -> tuple[str, list[str]]:
+    def parse_html(cls, settings: Settings) -> tuple[str, list[str]]:
         '''
         Get manga title and list of chapters.
         '''
 
-        with open(chapter_list_html_path, mode='r') as html_file:
+        with open(settings.chapter_list_html_path, mode='r') as html_file:
             html = BeautifulSoup(html_file, 'html.parser')
 
         # parse manga title
@@ -43,7 +44,12 @@ class MangafreakService:
 
             # extract chapter number
             if match := re.search('^Chapter ([^\\s]+)', chapter_name):
-                chapter_numbers.append(match.group(1))
+                chapter_number = match.group(1)
+
+                if chapter_number == settings.chapter_to_start_from:
+                    chapter_numbers.clear()
+
+                chapter_numbers.append(chapter_number)
 
         return (title, chapter_numbers)
 
