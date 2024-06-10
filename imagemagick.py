@@ -48,13 +48,25 @@ class ImageMagickService:
             # prepare command to run ImageMagick
             args = ['convert', f'{image_directory_path}/*', pdf_path]
 
-            # need to flush, otherwise it is likely not to print before converting is finished
-            print(f'Converting images from {image_directory_path} ... ', end='', flush=True)
+            if settings.verbose:
+                args.insert(1, '-monitor')
+
+            if settings.verbose:
+
+                print(f'Converting images from {image_directory_path}:')
+
+            else:
+
+                # need to flush, otherwise it is likely not to print before converting is finished
+                print(f'Converting images from {image_directory_path} ... ', end='', flush=True)
 
             # run ImageMagick
             try:
                 subprocess.check_output(args)
-                print('Done')
+
+                if not settings.verbose:
+                    print('Done')
+
             except subprocess.CalledProcessError as e:
                 print(f'\n\n[\033[33mWARN\033[0m] Non-zero exit code (check {pdf_path}): {e.output}', end='\n\n')
 

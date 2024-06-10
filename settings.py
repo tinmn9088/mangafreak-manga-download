@@ -7,3 +7,4 @@ class Settings:
     chapters_per_file: int
     author: str | None = None
     title: str | None = None
+    verbose: bool = False

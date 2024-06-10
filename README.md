@@ -21,3 +21,4 @@ Optional command line arguments:
 | `-ch` | Maximum number of chapters in a PDF file (_15_ by default).              |
 | `-a`  | Manga **author** used in PDF-file names (_'Unknown'_ by default).        |
 | `-t`  | Manga **title** used in PDF-file names (_title url version_ by default). |
+| `-v`  | Print ImageMagick output.                                                |
