@@ -46,18 +46,20 @@ class ImageMagickService:
             pdf_path = os.path.join(base_path, pdf_name)
 
             # prepare command to run ImageMagick
-            args = ['convert', '-monitor', f'{image_directory_path}/*', pdf_path]
+            args = ['convert', f'{image_directory_path}/*', pdf_path]
 
             # need to flush, otherwise it is likely not to print before converting is finished
             print(f'Converting images from {image_directory_path} ... ', end='', flush=True)
 
             # run ImageMagick
-            subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            try:
+                subprocess.check_output(args)
+                print('Done')
+            except subprocess.CalledProcessError as e:
+                print(f'\n\n[\033[33mWARN\033[0m] Non-zero exit code (check {pdf_path}): {e.output}', end='\n\n')
 
             pdf_number += 1
 
             pdf_paths.append(pdf_path)
-
-            print('Done')
 
         return pdf_paths
