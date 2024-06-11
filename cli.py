@@ -33,3 +33,8 @@ class ArgumentService:
             namespace.verbose,
             namespace.chapter_to_start_from
         )
+
+
+class MessageService:
+
+    WARN_PREFIX = '[\033[33mWARN\033[0m]'

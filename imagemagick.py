@@ -1,6 +1,7 @@
 import os
 import subprocess
 from settings import Settings
+from cli import MessageService
 
 
 class ImageMagickService:
@@ -67,7 +68,7 @@ class ImageMagickService:
                     print('Done')
 
             except subprocess.CalledProcessError as e:
-                print(f'\n\n[\033[33mWARN\033[0m] Non-zero exit code (check {pdf_path}): {e.output}', end='\n\n')
+                print(f'\n\n{MessageService.WARN_PREFIX} Non-zero exit code (check {pdf_path}): {e.output}', end='\n\n')
 
             pdf_number += 1
 

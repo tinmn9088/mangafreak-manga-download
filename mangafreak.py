@@ -3,6 +3,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from settings import Settings
+from cli import MessageService
 
 
 class MangafreakService:
@@ -32,6 +33,8 @@ class MangafreakService:
 
         chapter_numbers = []
 
+        is_chapter_to_start_from_found = False
+
         # iterate through <tbody>
         for chapter_list_tr in chapter_list_tbody:
 
@@ -47,9 +50,16 @@ class MangafreakService:
                 chapter_number = match.group(1)
 
                 if chapter_number == settings.chapter_to_start_from:
+                    is_chapter_to_start_from_found = True
                     chapter_numbers.clear()
 
                 chapter_numbers.append(chapter_number)
+
+        if settings.chapter_to_start_from is not None and not is_chapter_to_start_from_found:
+            print(
+                f'\n{MessageService.WARN_PREFIX} Chapter to start from was not found (all chapters will be processed): {settings.chapter_to_start_from}',
+                end='\n\n'
+            )
 
         return (title, chapter_numbers)
 
